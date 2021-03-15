@@ -6,7 +6,7 @@
 
 установить composer
 
-cd /var/www/ ... folder
+cd /var/www/https://github.com/Sergey-life/Laravel_8_CRUD.git
 
 cd folder
 
