@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'users');
+//Route::redirect('/', 'users/create');
+//
+//Route::resource('users',UsersController::class);
 
-Route::resource('users',UsersController::class);
+//Route::get('users', [ UsersController::class, 'update' ])->name('image.upload');
+//Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+Route::redirect('/', 'add-user');
+
+Route::get('/add-user',[UserController::class, 'addUser']);
+
+Route::post('/add-user',[UserController::class, 'storeUser'])->name('user.store');
+
+Route::get('/users',[UserController::class, 'users'])->name('users.all');
+
+Route::get('/edit-user/{id}',[UserController::class, 'editUser'])->name('user.edit');
+
+Route::post('/update-user',[UserController::class, 'updateUser'])->name('user.update');
+
+Route::get('/delete-user/{id}',[UserController::class, 'deleteUser'])->name('user.delete');
+
+Route::get('/show/{id}',[UserController::class, 'show'])->name('user.show');

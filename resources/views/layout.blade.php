@@ -1,13 +1,16 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
 
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+{{--    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">--}}
 
     <meta name="theme-color" content="#7952b3">
 
@@ -20,7 +23,6 @@
             -moz-user-select: none;
             user-select: none;
         }
-
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
@@ -30,7 +32,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.css" rel="stylesheet">
+{{--    <link href="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.css" rel="stylesheet">--}}
 </head>
 <body class="bg-light">
 
@@ -39,10 +41,10 @@
     <main>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
-            @endisset
-            @if(session('danger'))
-                <div class="alert alert-danger">{{ session('danger') }}</div>
-            @endisset
+        @endisset
+        @if(session('danger'))
+            <div class="alert alert-danger">{{ session('danger') }}</div>
+        @endisset
         @yield('content')
     </main>
     <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -55,6 +57,5 @@
     </footer>
 </div>
 
-<script src="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.js"></script>
-</body>
+<script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script></body>
 </html>

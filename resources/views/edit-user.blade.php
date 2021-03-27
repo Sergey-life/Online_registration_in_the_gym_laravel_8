@@ -1,21 +1,17 @@
 @extends('layout')
 
-@section('title', 'Регистрация пользователя')
+@section('title', isset($user) ? 'Update: ' . $user->name : 'Регистрация пользователя')
 
 @section('content')
-    <section>
-        @if(Session::has('user_added'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('user_added') }}
-            </div>
-        @endif
-    <div class="row mt-3">
-        <div class="col">
-            <a class="btn btn-secondary" type="button" href="{{ route('users.all') }}">Users</a>
+    <a class="btn btn-secondary" type="button" href="{{ route('users.all') }}">Back to users</a>
+    @if(Session::has('user_updated'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('user_updated') }}
         </div>
-    </div>
-    <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
+    @endif
+    <form method="POST" action="{{ route('user.update') }}" enctype="multipart/form-data" class="mt-3">
         @csrf
+        <input type="hidden" name="id" value="{{ $user->id }}">
         <div class="row">
             <div class="col">
                 <input name="name"
@@ -75,23 +71,17 @@
                 </select>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="form-group">
+                <label for="file">Chose profile image</label>
+                <input type="file" name="file" class="form-control" onchange="previewFile(this)">
+                <img id="previewImg" alt="profile image" src="{{ asset('images') }}/{{ $user->profileImage }}" style="max-width: 130px;margin-top: 20px">
+            </div>
+        </div>
         <div class="row mt-5 text-center">
             <div class="col">
                 <button type="submit" class="btn btn-success">Сохранить</button>
             </div>
         </div>
     </form>
-    </section>
-    <script>
-        function previewFile(input) {
-            var file = $("input[type=file]").get(0).files[0];
-            if (file){
-                var reader = new FileReader();
-                reader.onload = function () {
-                    $('#previewImg').attr("src", reader.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
 @endsection
