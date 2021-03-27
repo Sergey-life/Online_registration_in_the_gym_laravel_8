@@ -45,7 +45,7 @@
                 </td>
                 <td>
                     <a type="button" class="btn btn-danger  " href="/delete-user/{{$user->id}}">Delete</a>
-                    <a type="button" class="btn btn-info" href="/edit-user/{{$user->id}}">Edit</a>
+                    <a type="button" class="btn btn-warning" href="/edit-user/{{$user->id}}">Edit</a>
                 </td>
             </tr>
         @endforeach

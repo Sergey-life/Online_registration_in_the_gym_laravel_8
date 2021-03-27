@@ -56,7 +56,8 @@
             <div class="col">
                 <label for="">Monthly subscription</label>
                 <select name="monthly_subscription" id="monthly_subscription"> <!--Supplement an id here instead of using 'name'-->
-                    <option value="subscription_1" selected>Subscription 1</option>
+                    <option value="{{ old('monthly_subscription', isset($user) ? $user->monthly_subscription : null) }}" selected>{{ $user->monthly_subscription }}</option>
+                    <option value="subscription_1">Subscription 1</option>
                     <option value="subscription_2">Subscription 2</option>
                 </select>
             </div>
@@ -65,7 +66,8 @@
             <div class="col">
                 <label for="">Discount rate for a year</label>
                 <select name="discount_rate_for_a_year" id="discount_rate_for_a_year"> <!--Supplement an id here instead of using 'name'-->
-                    <option value="{{ null }}" selected>No</option>
+                    <option value="{{ old('discount_rate_for_a_year', isset($user) ? $user->discount_rate_for_a_year : null )}}" selected>{{ $user->discount_rate_for_a_year }}</option>
+                    <option value="{{ null }}">No</option>
                     <option value="Discount_1">Discount 1</option>
                     <option value="Discount_2">Discount 2</option>
                 </select>

@@ -13,12 +13,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-//Route::redirect('/', 'users/create');
-//
-//Route::resource('users',UsersController::class);
-
-//Route::get('users', [ UsersController::class, 'update' ])->name('image.upload');
-//Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
 Route::redirect('/', 'add-user');
 
 Route::get('/add-user',[UserController::class, 'addUser']);

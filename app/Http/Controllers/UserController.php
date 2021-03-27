@@ -61,8 +61,10 @@ class UserController extends Controller
         $monthlySubscription = $request->monthly_subscription;
         $discountRateForAyear = $request->discount_rate_for_a_year;
         $image = $request->file('file');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
+        if (!empty($image)){
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'), $imageName);
+        }
 
         $user = User::find($request->id);
         $user->name = $name;
@@ -71,7 +73,9 @@ class UserController extends Controller
         $user->email = $email;
         $user->monthly_subscription = $monthlySubscription;
         $user->discount_rate_for_a_year = $discountRateForAyear;
-        $user->profileImage = $imageName;
+        if (!empty($imageName)){
+            $user->profileImage = $imageName;
+        }
         $user->save();
         return back()->with('user_updated', 'User updated successfully!');
     }
@@ -79,7 +83,9 @@ class UserController extends Controller
     public function deleteUser($id)
     {
         $user = User::find($id);
-        unlink(public_path('images').'/'.$user->profileImage);
+        if (!empty($user->profileImage)){
+            unlink(public_path('images').'/'.$user->profileImage);
+        }
         $user->delete();
         return redirect()->route('users.all');
     }
